@@ -7,14 +7,14 @@ const registerUser = async(req,res)=>{
     if(!req.body.name || !req.body.password)
     return res.status(400).send({message: "Incomplete data"});
 
-    console.log(req.body);
+    // console.log(req.body);
     const passHash = await bcrypt.hash(req.body.password, 10); //para encriptar la contraseña
 
     const userSchema = new user({
         name: req.body.name,
         email: req.body.email,
         password:passHash,
-        role:req.user,  //el user es como un json que trae cuando hay un usuario registrandose
+        role:req.body.role,  //el user es como un json que trae cuando hay un usuario registrandose
         dbStatus:true,
     });
 
