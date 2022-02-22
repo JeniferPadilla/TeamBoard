@@ -20,6 +20,7 @@ const listRole =async(req,res)=>{
     let roles= await role.find();  //para traer la lista de todos- users es un array, el populate es para indicar algo exacto para mostrar
     if (roles.length == 0)
     return res.status(400).send({message:"No search results"});
+   
     return res.status(200).send ({roles});
 //la funcion find()
 };

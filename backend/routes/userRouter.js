@@ -11,6 +11,11 @@ userMidd.existingUser,
 roleMidd.existingRole,
 userController.registerUser);
 
-router.get("/listUser", userController.listUser);
+router.get("/listUser/:name?", userController.listUser); //se pone /:name? para saber que se envia un parametro y el signo es para que consulte con el filtro o sin el
+router.get("/listAdmin/:name?", userController.listAdmin);
+router.post("/login", userController.login);
+router.put("/delete/:_id", userController.deleteUser);
+router.put("/updateUserAdmin", userController.updateUserAdmin);
 
 export default router;
+

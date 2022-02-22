@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema({
     name: String,
     description:String,
     ImageUrl:String,
-    taskStatus:"to-do",
+    taskStatus:String,
     registerDate: {type:Date, default:Date.now},
 });
 
