@@ -14,14 +14,14 @@ const registerTask = async(req,res)=>{
     return res.status(400).send({message: "Incomplete data"});
 
       //el next es para decire que si todo esta bien continue con el proceso
+        // const existingUser = await user.findOne({email: req.body.user});//es para verificar si el usuario existe en db, y verificar si ese correo esta con findOne
+        // if (existingUser)
+        // return res.status(400).send({message: "The User is already registered"});
 
-        const existingUser = await user.findOne({email: req.body.user});//es para verificar si el usuario existe en db, y verificar si ese correo esta con findOne
-        if (existingUser) 
-        return res.status(400).send({message: "The User is already registered"});
-
-        console.log(existingUser);
+        // console.log(existingUser);
 
     const taskSchema = new task({
+        user:req.body.user,
         name: req.body.name,
         description: req.body.description,
         ImageUrl: req.body.ImageUrl,
@@ -36,6 +36,7 @@ const registerTask = async(req,res)=>{
         return res.status(200).json({    //se pone .json para los jsonwebtoken
             token: jwt.sign({           //asi se crea el jsonwebtoken jwt
             _id: result._id,
+            user: result.user,
             name: result.name,         //aqui se hace una copia de la db
             description: result.description,        //se ponen los nombres como estan en la db osea com esta en model
             iat: moment().unix()              //para generar la fecha de ingreso, el moment para encriptar la fecha
