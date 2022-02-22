@@ -67,8 +67,8 @@ const deleteTask = async(req, res)=>{
     const tasks = await task.findByIdAndDelete(req.params["_id"])
 
     return !tasks
-     ? res.status(400).send({message:"Error deleting user"})
-     : res.status(200).send({message: "user deleted"});
+     ? res.status(400).send({message:"Error deleting task"})
+     : res.status(200).send({message: "Task deleted"});
 };
 
 const updateStatusTask= async (req, res)=>{

@@ -5,7 +5,6 @@ import roleMidd from "../middleware/roleValidate.js";
 
 const router = express.Router();
 
-
 router.post("/registerUser",
 userMidd.existingUser,
 roleMidd.existingRole,
