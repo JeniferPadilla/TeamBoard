@@ -90,16 +90,17 @@ const listAdmin = async (req, res) => {
     return res.status(200).send({ users})
 };
 
-const deleteUser = async(req, res)=>{
-    if (!req.params["_id"])
-     return res.status(400).send({message:"Imcomplete data"})
+const deleteUser= async(req, res)=>{
 
-    const users = await user.findByIdAndDelete(req.params["_id"], {dbStatus:false,})
+    if(!req.params["_id"])
+    return res.status(400).send({message:"Incomplete data"});
+
+    const users =await user.findByIdAndUpdate(req.params["_id"], {dbStatus: false,})
 
     return !users
-     ? res.status(400).send({message:"Error deleting user"})
-     : res.status(200).send({message: "user deleted"});
-};
+    ? res.status(400).send({message:"Error deliting user"})
+    : res.status(200).send({message:"User delete"})
+  };
 
 const updateUserAdmin = async (req, res)=>{
 

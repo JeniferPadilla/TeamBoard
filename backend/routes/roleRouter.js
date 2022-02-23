@@ -4,5 +4,8 @@ const router = express.Router();// express maneja protocolo http con Router(mane
 //http://Localhost:3001/api/role/registerRole
 router.post("/registerRole", roleController.registerRole) //post para registrar,tambien indica la ruta
 router.get("/lisRol", roleController.listRole);
+router.put("/delete/:_id", roleController.deleteRol);
+router.put("/updateRole", roleController.updateRol);
+
 
 export default router;

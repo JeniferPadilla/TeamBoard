@@ -1,24 +1,15 @@
 import task from "../model/task.js";
-import bcrypt  from "bcrypt";
 import  jwt from "jsonwebtoken";
 import moment from "moment";
-import user from "../model/user.js";
 
 
 const registerTask = async(req,res)=>{
-    
+
     if(!req.body.name ||
        !req.body.description ||
        !req.body.taskStatus ||
        !req.body.ImageUrl)
     return res.status(400).send({message: "Incomplete data"});
-
-      //el next es para decire que si todo esta bien continue con el proceso
-        // const existingUser = await user.findOne({email: req.body.user});//es para verificar si el usuario existe en db, y verificar si ese correo esta con findOne
-        // if (existingUser)
-        // return res.status(400).send({message: "The User is already registered"});
-
-        // console.log(existingUser);
 
     const taskSchema = new task({
         user:req.body.user,

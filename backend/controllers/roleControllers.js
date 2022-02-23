@@ -25,5 +25,32 @@ const listRole =async(req,res)=>{
 //la funcion find()
 };
 
-export default {registerRole, listRole}; //se ponen en llave por que aqui habran muchas funciones
+const deleteRol = async(req, res)=>{
+
+    if(!req.params["_id"])
+    return res.status(400).send({message:"Incomplete data"});
+
+    const roles =await role.findByIdAndUpdate(req.params["_id"], {dbStatus: false,})
+
+    return !roles
+    ? res.status(400).send({message:"Error deliting user"})
+    : res.status(200).send({message:"User delete"})
+  };
+
+const updateRol = async (req, res)=>{
+
+    if (!req.body._id || !req.body.name || !req.body.description)
+
+    return res.status(400).send({message:"Incomplete data"});
+
+    const ediRol = await role.findByIdAndUpdate(req.body._id, {
+        name: req.body.name,
+        description: req.body.description,
+    });
+    if (!ediRol) return res.status(500).send({message:"Error editing role"})
+    return res.status(200).send({message:"Role updated"});
+};
+
+
+export default {registerRole, listRole, deleteRol, updateRol}; //se ponen en llave por que aqui habran muchas funciones
 
