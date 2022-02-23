@@ -44,7 +44,7 @@ const listTask =async(req,res)=>{
 
     let tasks= await task
     .find({name: new RegExp(req.params["name"])})
-    .populate("name")
+    .populate("user")
     .exec();
     if (tasks.length == 0)
     return res.status(400).send({message:"No search results"});
