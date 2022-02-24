@@ -5,7 +5,7 @@ import moment from "moment";
 
 const registerTask = async(req,res)=>{
 
-    if(!req.body.name ||
+    if(!req.body._id || !req.body.name ||
        !req.body.description ||
        !req.body.taskStatus ||
        !req.body.ImageUrl)
@@ -51,6 +51,15 @@ const listTask =async(req,res)=>{
     return res.status(200).send ({tasks});
 };
 
+const listTaskUser =async(req,res)=>{
+
+    let tasks = await task.find({user: (req.params["_id"])});
+
+    if (tasks.length == 0)
+    return res.status(400).send({message:"No search results"});
+    return res.status(200).send ({tasks});
+};
+
 const deleteTask = async(req, res)=>{
 
     if (!req.params["_id"])
@@ -75,5 +84,5 @@ const updateStatusTask= async (req, res)=>{
     return res.status(200).send({message:"Status task  updated"});
 };
 
-export default{registerTask, listTask,deleteTask, updateStatusTask};
+export default{registerTask, listTask,deleteTask, updateStatusTask, listTaskUser};
 

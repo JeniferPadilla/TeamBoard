@@ -1,10 +1,11 @@
 import user from "../model/user.js";
 
-
 const existingIdUser = async (req,res,next)=>{ //es para hacer las validaciones
 
-    const userId= await user.findOne({
-        name: "pepas"})
+    // const userId= await user.findOne({
+    //     name: "pepas"})
+    const userId = await user.findOne({_id: req.body._id})
+
     if(!userId) return res.status(500)
     .send({message: "no task was assigned"})
 
